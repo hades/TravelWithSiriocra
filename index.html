@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Travelling with Siriocra</title>
+    <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #map,
+    #pano {
+      height: 100%;
+      flex-grow: 1;
+    }
+
+    #pano {
+      flex-grow: 3;
+    }
+
+    #img {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 19%;
+      z-index: 2;
+    }
+    </style>
+    <script>
+    function initialize() {
+      const startPoint = { lat: 55.9484034, lng: -3.1945135 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: startPoint,
+        zoom: 14,
+      });
+      const panorama = new google.maps.StreetViewPanorama(
+        document.getElementById("pano"),
+        {
+          position: startPoint,
+          pov: {
+            heading: 40,
+            pitch: 15,
+          },
+        }
+      );
+      map.setStreetView(panorama);
+    }
+    </script>
+  </head>
+  <body>
+    <div id="pano"></div>
+    <div id="map"></div>
+    <img src="png" id="img" />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initialize&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
