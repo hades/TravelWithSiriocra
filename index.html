@@ -70,6 +70,7 @@
         }
       );
       map.setStreetView(panorama);
+      map.addListener('click', function(e) { panorama.setPosition(e.latLng); });
     }
     </script>
   </head>
